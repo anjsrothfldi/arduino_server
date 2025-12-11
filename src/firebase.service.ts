@@ -15,6 +15,8 @@ export class FirebaseService {
     this.db = admin.firestore();
   }
 
+  private memoryStore: Record<number, any> = {}; // Temporary in-memory store
+
   async saveEnvironmentData(data: any) {
     console.log("Received data:", data);
     
@@ -36,13 +38,22 @@ export class FirebaseService {
         validated: true
     };
 
-    try {
-        const docRef = await this.db.collection('EnvironmentData').add(payload);
-        console.log("Document written with ID: ", docRef.id);
-        return { success: true, id: docRef.id };
-    } catch (e) {
-        console.error("Error adding document: ", e);
-        return { success: false, error: e };
+    // Save to in-memory store for immediate polling access
+    this.memoryStore[payload.sessionId] = payload;
+    
+    return { success: true, id: 'memory-only' };
+  }
+
+  async getLatestEnvironmentData(sessionId: number) {
+    // Check memory store first for fastest access
+    if (this.memoryStore[sessionId]) {
+        const data = this.memoryStore[sessionId];
+        return {
+             ...data,
+            createdAt: data.createdAt instanceof admin.firestore.Timestamp ? data.createdAt.toDate().toISOString() : data.createdAt
+        };
     }
+
+    return null;
   }
 }

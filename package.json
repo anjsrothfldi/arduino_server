@@ -4,10 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "engines": {
-    "node": "18"
+    "node": "22"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.json",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",

@@ -5,7 +5,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
-firebase-debug.log
+firebase-debug.*.log*
+
+# Firebase cache
+.firebase/
+
+# Firebase config
+
+# Uncomment this if you'd like others to create their own Firebase project.
+# For a team working on the same Firebase project(s), it is recommended to leave
+# it commented so all members can deploy to the same project(s) in .firebaserc.
+# .firebaserc
 
 # Runtime data
 pids
@@ -31,15 +41,11 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
+# Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
 node_modules/
-jspm_packages/
-
-# TypeScript v1 declaration files
-typings/
 
 # Optional npm cache directory
 .npm
@@ -58,43 +64,10 @@ typings/
 
 # dotenv environment variables file
 .env
-.env.test
 
-# parcel-bundler cache (https://parceljs.org/)
-.cache
+# dataconnect generated files
+.dataconnect
 
-# next.js build output
-.next
-
-# nuxt.js build output
-.nuxt
-
-# gatsby server build output
-.cache/
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# OS metadata
-.DS_Store
-Thumbs.db
-
-# IDEs and editors
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Firebase
-.firebase/
-functions/node_modules/
-functions/lib/
+# Build artifacts
 dist/
+functions/lib/
